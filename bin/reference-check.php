@@ -7,8 +7,8 @@ declare(strict_types=1);
  * InterfaceApi §2 引用边界检查。
  *
  * 用法（schedule-job 根或 InterfaceApi 仓库）：
- *   php InterfaceApi/bin/reference-check.php
- *   php InterfaceApi/bin/reference-check.php InterfaceApi/ScheduleJob
+ *   php bin/reference-check.php
+ *   php bin/reference-check.php InterfaceApi/ScheduleJob
  */
 
 $interfaceApiRoot = dirname(__DIR__);

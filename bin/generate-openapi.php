@@ -8,8 +8,8 @@ declare(strict_types=1);
  * 行为对齐 swoolefy `gen:apidoc` 的 schema/响应信封规则，数据源改为契约接口而非 Router。
  *
  * 用法（schedule-job 仓库根）：
- *   php InterfaceApi/bin/generate-openapi.php --service=ScheduleJob/App
- *   php InterfaceApi/bin/generate-openapi.php --service=ScheduleJob/App --out=swaggerui/apidoc
+ *   php bin/generate-openapi.php --service=ScheduleJob/App
+ *   php bin/generate-openapi.php --service=ScheduleJob/App --out=swaggerui/apidoc
  */
 
 $binDir = __DIR__;
