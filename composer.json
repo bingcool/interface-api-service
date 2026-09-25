@@ -12,7 +12,8 @@
     }
   ],
   "require": {
-    "php": ">=8.4"
+    "php": ">=8.4",
+    "bingcool/swoolefy": "~6.3"
   },
   "autoload": {
     "psr-4": {

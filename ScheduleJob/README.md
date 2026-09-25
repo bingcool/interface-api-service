@@ -1,6 +1,6 @@
 # ScheduleJob 契约包
 
-`InterfaceApi/ScheduleJob/` 是 **schedule-job** 项目在 InterfaceApi 契约仓库中的根目录。PSR-4 下对应命名空间前缀 `InterfaceApi\ScheduleJob\`（例如 `InterfaceApi\ScheduleJob\App\Module\Cron\...`）。
+`ScheduleJob/` 是 **schedule-job** 服务在 **interface-api-service** 契约仓库中的根目录。PSR-4 下对应命名空间前缀 `InterfaceApi\ScheduleJob\`（例如 `InterfaceApi\ScheduleJob\App\Module\Cron\...`）。
 
 与业务服务端 `App/Module/...` 目录结构一一对应，但类型定义在契约侧：`Interface/`、`Request/`、`Response/`、`Dto/` 等。
 
@@ -40,7 +40,7 @@ CLI 参数 `--service=ScheduleJob/App` 中的 `ScheduleJob/App` 会映射到磁�
 
 ### 何时会用到
 
-- **会读**：`php InterfaceApi/bin/generate-client.php --service=ScheduleJob/App`  
+- **会读**：`php bin/generate-client.php --service=ScheduleJob/App`  
   缺少文件、JSON 无效、或缺少当前 `serviceKey` 对应的 `serviceName` 时，生成器会直接报错并停止（参见 InterfaceApi 方案 §5.4）。
 - **不读**：`reference-check.php`、`generate-openapi.php` 不依赖本文件（OpenAPI 使用 `openapi-modules.json` 等）。
 
@@ -48,17 +48,17 @@ CLI 参数 `--service=ScheduleJob/App` 中的 `ScheduleJob/App` 会映射到磁�
 
 ## 常用命令
 
-在 schedule-job 仓库根目录：
+在 **interface-api-service** 仓库根目录（需先 `composer install`）：
 
 ```bash
-# §2 引用边界（默认扫描 InterfaceApi/ScheduleJob）
-php InterfaceApi/bin/reference-check.php
+# §2 引用边界（默认扫描 ScheduleJob）
+php bin/reference-check.php
 
 # 生成 Client（依赖 interface-api.json）
-php InterfaceApi/bin/generate-client.php --service=ScheduleJob/App
+php bin/generate-client.php --service=ScheduleJob/App
 
 # 生成 OpenAPI
-php InterfaceApi/bin/generate-openapi.php --service=ScheduleJob/App
+php bin/generate-openapi.php --service=ScheduleJob/App
 ```
 
 契约变更流程：先改 `Interface/` 与 Request/Response/Dto → `reference-check.php` → 再生成 Client / OpenAPI。

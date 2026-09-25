@@ -16,19 +16,17 @@
 
 ## 推荐目录布局
 
-将本仓库克隆到与业务项目**同一父目录**下（同级 checkout），便于本地开发与生成器自动定位项目根目录：
+将本仓库克隆到与业务项目**同一父目录**下，业务服务通过 Composer 引用本包即可：
 
 ```text
 wwwphp/                          # 工作区根目录（示例）
 ├── interface-api-service/       # 本仓库（Composer 包 bingcool/interface-api）
-├── schedule-job/                # 业务服务 A（含 App/、cli.php 等）
-├── order-service/               # 业务服务 B
+├── schedule-job/                # 业务服务 A
+├── order-biz-service/           # 业务服务 B
 └── ...
 ```
 
-生成器会从 `interface-api-service` 向上找到同级、且具备 `App/` 与 `cli.php`（或 `cron.php`）的业务仓库作为项目根。
-
-若希望契约目录位于业务仓库**内部**，也可将本包内容放在业务仓库下的 `InterfaceApi/` 目录（与 Swoolefy `App\Autoloader` 的 embedded 约定一致）。
+契约生成脚本（`bin/generate-*.php`）**仅在本仓库根目录**运行，不依赖业务仓路径。
 
 ## 环境要求
 
@@ -93,7 +91,13 @@ interface-api-service/
 
 ## 常用命令
 
-在**本仓库根目录**执行（生成器会自动解析同级业务项目根目录）：
+在**本仓库根目录**先安装依赖（生成器依赖 `bingcool/swoolefy`）：
+
+```bash
+composer install
+```
+
+在**本仓库根目录**执行：
 
 ```bash
 # §2 引用边界检查（默认检查 ScheduleJob 契约根，可传入路径）
@@ -105,13 +109,6 @@ php bin/generate-client.php --service=ScheduleJob/App
 
 # 生成 OpenAPI 文档
 php bin/generate-openapi.php --service=ScheduleJob/App
-```
-
-若业务项目将契约嵌在 `InterfaceApi/` 子目录，可在**业务项目根目录**执行（路径按实际调整）：
-
-```bash
-php InterfaceApi/bin/reference-check.php
-php InterfaceApi/bin/generate-client.php --service=ScheduleJob/App
 ```
 
 ## 开发与协作说明
