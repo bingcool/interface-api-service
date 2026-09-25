@@ -1,7 +1,7 @@
 {
   "name": "bingcool/interface-api",
-  "description": "description",
-  "minimum-stability": "stable",
+  "description": "这是一个swoolefy实现微服务的统一接口契约仓库，多个服务的接口，DTO, Request, Respnse, Const, Enum 定义在统一的接口层，作为独立composer包，其他服务之间安装引用即可",
+  "minimum-stability": "dev",
   "license": "MIT",
   "type": "project",
   "authors": [
