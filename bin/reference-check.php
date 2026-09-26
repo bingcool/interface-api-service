@@ -6,7 +6,7 @@ declare(strict_types=1);
 /**
  * InterfaceApi §2 引用边界检查。
  *
- * 用法（interface-api-service 仓库根）：
+ * 用法（interface-api-service 仓库根目录）：
  *   php bin/reference-check.php
  *   php bin/reference-check.php ScheduleJob
  */

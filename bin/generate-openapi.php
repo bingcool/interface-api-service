@@ -7,7 +7,7 @@ declare(strict_types=1);
  * 从 InterfaceApi 契约（*ApiInterface + #[Route]）生成 OpenAPI 3.0 YAML。
  * 行为对齐 swoolefy `gen:apidoc` 的 schema/响应信封规则，数据源改为契约接口而非 Router。
  *
- * 用法（interface-api-service 仓库根）：
+ * 用法（interface-api-service 仓库根目录）：
  *   php bin/generate-openapi.php --service=ScheduleJob/App
  *   php bin/generate-openapi.php --service=ScheduleJob/App --out=ScheduleJob/openapi
  */
@@ -67,8 +67,8 @@ function parseGenerateOpenApiArgv(array $argv): array
     }
 
     if ($serviceKey === null || trim($serviceKey) === '') {
-        fwrite(STDERR, "Missing required --service=ScheduleJob/App\n");
-        fwrite(STDERR, "Usage: php bin/generate-openapi.php --service=ScheduleJob/App [--out=ScheduleJob/openapi]\n");
+        fwrite(STDERR, "Missing required --service=xxxxxx/App\n");
+        fwrite(STDERR, "Usage: php bin/generate-openapi.php --service=xxxxxx/App [--out=ScheduleJob/openapi]\n");
         exit(2);
     }
 

@@ -52,8 +52,8 @@ function parseGenerateClientArgv(array $argv): string
     }
 
     if ($serviceKey === null || trim($serviceKey) === '') {
-        fwrite(STDERR, "Missing required --service=ScheduleJob/App\n");
-        fwrite(STDERR, "Usage: php bin/generate-client.php --service=ScheduleJob/App\n");
+        fwrite(STDERR, "Missing required --service=xxxxxx/App\n");
+        fwrite(STDERR, "Usage: php bin/generate-client.php --service=xxxxxx/App\n");
         exit(2);
     }
 

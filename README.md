@@ -64,6 +64,37 @@ composer update bingcool/interface-api
 
 安装后，PSR-4 命名空间 `InterfaceApi\` 由包根目录自动映射（见本仓库 `composer.json` 的 `autoload`）。
 
+### 本地开发：`REGISTER_LOCAL_INTERFACE_API`
+
+在**本机**联调契约时，不必改各业务项目的 `composer.json`（不用改 `require` 版本，也不用加 `path` 仓库）。只要业务项目与 **`interface-api-service` 同级 checkout**，并在该业务项目里打开开关，运行时就会**只**从本地契约仓加载 `InterfaceApi\` 类（例如你当前 git 分支上的改动），便于多个服务共用同一份本地契约调试。
+
+| 项 | 说明 |
+|----|------|
+| **开关** | `REGISTER_LOCAL_INTERFACE_API=1` |
+| **配置位置** | 业务项目 `App/.env`，或 IDE / 终端 / PHP-FPM 进程环境变量（需与运行 `cli.php` / Swoole Worker 的环境一致） |
+| **契约路径** | `{业务项目上级目录}/interface-api-service/`（目录名须与 `App\Autoloader` 中约定一致，默认 `interface-api-service`，且含 `Support/`） |
+| **加载顺序** | 开启后 `App\Autoloader::register(true)` **prepend**，优先于 Composer autoload |
+| **与 vendor 关系** | 开启后**不会**在本地找不到类时回退到 `vendor` 里的 `bingcool/interface-api`；缺文件会直接报错，避免误用旧版本 |
+| **默认（未设置或非 `1`）** | 由 Composer 安装的 `bingcool/interface-api`（vendor）提供契约，适合测试 / 生产 |
+
+目录示例（同一台开发机上多个业务仓可共用**同一个**本地 `interface-api-service` 目录，切换该仓库分支即可影响所有已开启开关的项目）：
+
+```text
+wwwphp/
+├── interface-api-service/    # 本地契约仓（checkout 你的开发分支）
+├── schedule-job/
+│   └── App/.env              # REGISTER_LOCAL_INTERFACE_API=1
+└── order-biz-service/
+    └── App/.env              # REGISTER_LOCAL_INTERFACE_API=1
+```
+
+```bash
+# 业务项目 App/.env 示例（仅本地）
+REGISTER_LOCAL_INTERFACE_API=1
+```
+
+**注意：** 测试、预发、生产环境请勿设置该变量（或显式关闭），应通过 Composer 锁定并发布 `bingcool/interface-api` 版本。契约生成脚本（`bin/generate-*.php`）在本仓库内执行，不依赖此环境变量。
+
 ### 方式二：VCS / Packagist 发布
 
 将 `bingcool/interface-api` 发布到私有 Packagist 或 Git 仓库后，业务服务按常规定义 `require` 即可，无需 path 仓库。
