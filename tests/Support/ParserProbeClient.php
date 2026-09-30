@@ -20,4 +20,24 @@ final class ParserProbeClient extends BaseClientApi
     {
         return $this->parseResponseByHeaders($response, $forceType);
     }
+
+    /**
+     * @param array<string, mixed> $requestDefaults
+     * @param array<string, mixed> $options
+     * @return array<string, mixed>
+     */
+    public function mergeJson(array $requestDefaults, array $options = []): array
+    {
+        return $this->mergeClientOptions($requestDefaults, $options);
+    }
+
+    /**
+     * @param array<string, mixed> $requestDefaults
+     * @param array<string, mixed> $options
+     * @return array<string, mixed>
+     */
+    public function mergeStream(array $requestDefaults, array $options = []): array
+    {
+        return $this->mergeStreamClientOptions($requestDefaults, $options);
+    }
 }

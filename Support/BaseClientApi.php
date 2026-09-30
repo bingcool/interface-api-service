@@ -345,8 +345,9 @@ abstract class BaseClientApi
     }
 
     /**
-     * JSON client defaults + per-request keys (body, query, …) + caller overrides; headers are deep-merged.
+     * JSON client defaults + per-request keys (body, query, …) + caller overrides.
      *
+     * Headers merge in order: propagated defaults, contract defaults, caller overrides.
      * SDK 专用选项（不会传给 Guzzle）：connect_retry_num（0~3，POST 默认 0，GET/PUT/DELETE 等默认 1）。
      *
      * @param array<string, mixed> $requestDefaults
@@ -357,7 +358,7 @@ abstract class BaseClientApi
     {
         // GuzzleHttp\Exception\RequestException 或其子类 GuzzleHttp\Exception\ConnectException。
         // 你可以使用 try-catch 来捕获它们，但这有一个重要前提：请求的 http_errors 选项必须被设置为 true（这也是该选项的默认行为）
-        $defaults = [
+        return $this->mergeRequestOptions([
             'http_errors' => true,
             'headers' => array_merge(
                 HeaderPropagator::outgoingHeaders(),
@@ -365,20 +366,14 @@ abstract class BaseClientApi
             ),
             'connect_timeout' => 30.0,
             'timeout' => 120.0,
-        ];
-        $defaults = array_merge($defaults, $requestDefaults);
-        $merged = array_merge($defaults, $options);
-        if (isset($defaults['headers'], $options['headers']) && is_array($defaults['headers']) && is_array($options['headers'])) {
-            $merged['headers'] = array_merge($defaults['headers'], $options['headers']);
-        }
-
-        return $merged;
+        ], $requestDefaults, $options);
     }
 
     /**
      * 流式请求默认选项：不设置 Content-Type: application/json。
      *
      * 用于 SSE / Chunked 等接口；普通 JSON API 请用 mergeClientOptions()。
+     * Headers 同样按「透传默认头、契约默认头、调用方头」合并，避免契约头覆盖 trace id / User-Agent。
      *
      * @param array<string, mixed> $requestDefaults
      * @param array<string, mixed> $options
@@ -386,19 +381,44 @@ abstract class BaseClientApi
      */
     protected function mergeStreamClientOptions(array $requestDefaults, array $options = []): array
     {
-        $defaults = [
+        return $this->mergeRequestOptions([
             'http_errors' => true,
             'headers' => HeaderPropagator::outgoingHeaders(),
             'connect_timeout' => 30.0,
             'timeout' => 120.0,
-        ];
-        $defaults = array_merge($defaults, $requestDefaults);
-        $merged = array_merge($defaults, $options);
-        if (isset($defaults['headers'], $options['headers']) && is_array($defaults['headers']) && is_array($options['headers'])) {
-            $merged['headers'] = array_merge($defaults['headers'], $options['headers']);
-        }
+        ], $requestDefaults, $options);
+    }
+
+    /**
+     * @param array<string, mixed> $base
+     * @param array<string, mixed> $requestDefaults
+     * @param array<string, mixed> $options
+     * @return array<string, mixed>
+     */
+    private function mergeRequestOptions(array $base, array $requestDefaults, array $options): array
+    {
+        $headers = array_merge(
+            $this->headerMap($base),
+            $this->headerMap($requestDefaults),
+            $this->headerMap($options),
+        );
+        unset($base['headers'], $requestDefaults['headers'], $options['headers']);
+
+        $merged = array_merge($base, $requestDefaults, $options);
+        $merged['headers'] = $headers;
 
         return $merged;
+    }
+
+    /**
+     * @param array<string, mixed> $options
+     * @return array<string, mixed>
+     */
+    private function headerMap(array $options): array
+    {
+        $headers = $options['headers'] ?? [];
+
+        return is_array($headers) ? $headers : [];
     }
 
     /**

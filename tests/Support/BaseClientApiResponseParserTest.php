@@ -20,6 +20,33 @@ final class BaseClientApiResponseParserTest extends TestCase
         $this->client = new ParserProbeClient();
     }
 
+    public function testHeaderMergeKeepsPropagatedHeadersUnderContractAndCallerHeaders(): void
+    {
+        $stream = $this->client->mergeStream([
+            'body' => '{}',
+            'headers' => ['Accept' => 'text/event-stream', 'X-Contract' => 'contract'],
+        ], [
+            'headers' => ['Accept' => 'text/plain', 'X-Caller' => 'caller'],
+        ]);
+
+        self::assertSame('{}', $stream['body']);
+        self::assertSame('swoolefy-api-sdk', $stream['headers']['x-user-agent']);
+        self::assertSame('text/plain', $stream['headers']['Accept']);
+        self::assertSame('contract', $stream['headers']['X-Contract']);
+        self::assertSame('caller', $stream['headers']['X-Caller']);
+        self::assertArrayNotHasKey('Content-Type', $stream['headers']);
+
+        $json = $this->client->mergeJson([
+            'headers' => ['X-Contract' => 'contract'],
+        ], [
+            'headers' => ['X-Caller' => 'caller'],
+        ]);
+        self::assertSame('application/json', $json['headers']['Content-Type']);
+        self::assertSame('swoolefy-api-sdk', $json['headers']['x-user-agent']);
+        self::assertSame('contract', $json['headers']['X-Contract']);
+        self::assertSame('caller', $json['headers']['X-Caller']);
+    }
+
     public function testJsonSuccessDecodesBusinessEnvelopeAndNestedDto(): void
     {
         $payload = $this->client->parse(new Response(200, ['Content-Type' => 'application/json'], json_encode([

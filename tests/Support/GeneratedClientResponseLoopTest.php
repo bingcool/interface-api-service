@@ -86,6 +86,7 @@ PHP, 'SseLoopApiInterface', [new Response(200, ['Content-Type' => 'application/j
         ], $events);
         $sent = $history->items[0]['request'];
         self::assertSame('text/event-stream', $sent->getHeaderLine('Accept'));
+        self::assertSame('swoolefy-api-sdk', $sent->getHeaderLine('x-user-agent'));
         self::assertSame('', $sent->getHeaderLine('Content-Type'));
         self::assertStringContainsString('stream', (string) $sent->getBody());
     }
