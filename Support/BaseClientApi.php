@@ -6,7 +6,9 @@ namespace InterfaceApi\Support;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\TransferException;
 use Psr\Http\Message\ResponseInterface;
 use Swoolefy\Support\HeaderPropagation\HeaderPropagator;
 
@@ -111,7 +113,7 @@ abstract class BaseClientApi
     }
 
     /**
-     * 发起 HTTP 请求；RequestException（含 ConnectException、4xx/5xx）时按策略重试。
+     * 发起 HTTP 请求。仅连接失败或无 HTTP 响应的传输失败按策略重试；4xx/5xx 直接抛出。
      *
      * 重试次数优先级：$retryNum > $options['connect_retry_num'] > 方法默认值。
      * - GET/HEAD/PUT/DELETE/OPTIONS 默认 1 次；POST/PATCH 默认 0（需业务显式开启，保证幂等）
@@ -139,8 +141,8 @@ abstract class BaseClientApi
         while (true) {
             try {
                 return $this->httpClient->request($method, $uri, $options);
-            } catch (RequestException $e) {
-                if ($retriesLeft <= 0) {
+            } catch (TransferException $e) {
+                if (!$this->isConnectRetryable($e) || $retriesLeft <= 0) {
                     throw $e;
                 }
 
@@ -171,6 +173,16 @@ abstract class BaseClientApi
                 $retriesLeft--;
             }
         }
+    }
+
+    /** 连接失败，或没有 HTTP 响应的传输失败，才允许重试。4xx/5xx 直接抛出。 */
+    private function isConnectRetryable(TransferException $e): bool
+    {
+        if ($e instanceof ConnectException) {
+            return true;
+        }
+
+        return $e instanceof RequestException && !$e->hasResponse();
     }
 
     /** Nacos 模式下重新发现 base_uri 并重建 Guzzle Client */
@@ -209,7 +221,7 @@ abstract class BaseClientApi
      * 记录重试日志（guzzle_curl 通道），含失败/下一跳 host:port 与异常信息。
      */
     protected function logConnectRetry(
-        RequestException $e,
+        TransferException $e,
         string $method,
         string $uri,
         int $attempt,
@@ -289,7 +301,7 @@ abstract class BaseClientApi
         return min(3, $retryNum);
     }
 
-    /** 创建 Guzzle Client；http_errors=true 以便 RequestException 触发重试逻辑 */
+    /** 创建 Guzzle Client；http_errors=true 使 4xx/5xx 抛出带响应的 RequestException，不进入连接重试 */
     protected function createHttpClient(): Client
     {
         return new Client([

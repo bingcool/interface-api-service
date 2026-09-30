@@ -71,12 +71,17 @@ PHP);
         self::assertStringContainsString('public function export(ChatStreamRequest $request, array $options = []): string', $source);
         self::assertStringContainsString('public function download(ChatStreamRequest $request, array $options = []): array', $source);
 
+        $sse = $this->methodSource($source, 'chatStream');
+        self::assertStringContainsString("\$requestDefaults['headers']['Accept'] = 'text/event-stream';", $sse);
+        self::assertStringContainsString("\$requestDefaults['headers']['Content-Type'] = 'application/json';", $sse);
+
         $download = $this->methodSource($source, 'download');
         self::assertStringContainsString('mergeClientOptions', $download);
         self::assertStringNotContainsString('mergeStreamClientOptions', $download);
         $chunked = $this->methodSource($source, 'export');
         self::assertStringContainsString('mergeStreamClientOptions', $chunked);
         self::assertStringNotContainsString('mergeClientOptions', $chunked);
+        self::assertStringNotContainsString('Content-Type', $chunked);
     }
 
     #[DataProvider('invalidSignatures')]

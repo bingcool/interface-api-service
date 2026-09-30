@@ -312,6 +312,9 @@ PHP;
                 $body[] = '        $requestDefaults[\'query\'] = $request->toDeepArray();';
             } else {
                 $body[] = '        $requestDefaults[\'body\'] = json_encode($request->toDeepArray(), JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);';
+                if ($responseMode === 'sse' || $responseMode === 'chunked') {
+                    $body[] = '        $requestDefaults[\'headers\'][\'Content-Type\'] = \'application/json\';';
+                }
             }
         }
         if ($responseMode === 'sse') {
