@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace InterfaceApi\ScheduleJob\App\Module\Cron\Dto\CronTaskManager;
 
 use InterfaceApi\ScheduleJob\App\Module\Cron\Dto\Common\CronTaskPayloadDto;
-use InterfaceApi\Support\AbstractDto;
 use InterfaceApi\Support\ApiProperty;
+use InterfaceApi\Support\AbstractDto;
 
 /**
  * 任务执行日志分页查询入参 DTO。

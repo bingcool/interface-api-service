@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace InterfaceApi\ScheduleJob\App\Module\Staff\Dto\StaffRole;
 
-use InterfaceApi\Support\AbstractDto;
 use InterfaceApi\Support\ApiProperty;
+use InterfaceApi\Support\AbstractDto;
 
 class StaffMenuSortAckDto extends AbstractDto
 {
@@ -28,5 +28,29 @@ class StaffMenuSortAckDto extends AbstractDto
         $dto->ids = array_values($ids);
 
         return $dto;
+    }
+
+    public function getParentId(): int
+    {
+        return $this->parentId;
+    }
+
+    public function setParentId(int $parentId): static
+    {
+        $this->parentId = $parentId;
+
+        return $this;
+    }
+
+    public function getIds(): array
+    {
+        return $this->ids;
+    }
+
+    public function setIds(array $ids): static
+    {
+        $this->ids = $ids;
+
+        return $this;
     }
 }

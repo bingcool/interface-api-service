@@ -6,9 +6,9 @@ declare(strict_types=1);
 namespace InterfaceApi\ScheduleJob\App\Module\Cron\Response\CronTaskManager;
 
 use InterfaceApi\ScheduleJob\App\Module\Cron\Dto\CronTaskManager\CronTaskRowDto;
-use InterfaceApi\Support\ArrayDto;
-use InterfaceApi\Support\ArrayList;
 use InvalidArgumentException;
+use InterfaceApi\Support\ArrayList;
+use InterfaceApi\Support\ArrayDto;
 
 class ListTasksPageResult extends ArrayDto
 {

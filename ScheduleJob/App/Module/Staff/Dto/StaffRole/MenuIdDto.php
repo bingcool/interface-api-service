@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace InterfaceApi\ScheduleJob\App\Module\Staff\Dto\StaffRole;
 
-use InterfaceApi\Support\AbstractDto;
 use InterfaceApi\Support\ApiProperty;
+use InterfaceApi\Support\AbstractDto;
 
 class MenuIdDto extends AbstractDto
 {
@@ -23,5 +23,12 @@ class MenuIdDto extends AbstractDto
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): static
+    {
+        $this->id = $id;
+
+        return $this;
     }
 }

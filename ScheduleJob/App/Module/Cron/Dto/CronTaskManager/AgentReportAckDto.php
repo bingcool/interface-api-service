@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace InterfaceApi\ScheduleJob\App\Module\Cron\Dto\CronTaskManager;
 
-use InterfaceApi\Support\AbstractDto;
 use InterfaceApi\Support\ApiProperty;
+use InterfaceApi\Support\AbstractDto;
 
 class AgentReportAckDto extends AbstractDto
 {
@@ -22,5 +22,29 @@ class AgentReportAckDto extends AbstractDto
         $dto->saved = $saved;
 
         return $dto;
+    }
+
+    public function getSaved(): bool
+    {
+        return $this->saved;
+    }
+
+    public function setSaved(bool $saved): static
+    {
+        $this->saved = $saved;
+
+        return $this;
+    }
+
+    public function getCronId(): int
+    {
+        return $this->cronId;
+    }
+
+    public function setCronId(int $cronId): static
+    {
+        $this->cronId = $cronId;
+
+        return $this;
     }
 }

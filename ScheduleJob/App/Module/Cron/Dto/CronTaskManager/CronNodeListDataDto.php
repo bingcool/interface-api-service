@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace InterfaceApi\ScheduleJob\App\Module\Cron\Dto\CronTaskManager;
 
 use InterfaceApi\ScheduleJob\App\Module\Common\Dto\AbstractListDataDto;
+use InvalidArgumentException;
 use InterfaceApi\Support\ApiProperty;
 use InterfaceApi\Support\ArrayList;
-use InvalidArgumentException;
 
 class CronNodeListDataDto extends AbstractListDataDto
 {

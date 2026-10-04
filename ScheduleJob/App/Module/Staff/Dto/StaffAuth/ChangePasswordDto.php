@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace InterfaceApi\ScheduleJob\App\Module\Staff\Dto\StaffAuth;
 
-use InterfaceApi\Support\AbstractDto;
 use InterfaceApi\Support\ApiProperty;
+use InterfaceApi\Support\AbstractDto;
 
 class ChangePasswordDto extends AbstractDto
 {
@@ -41,5 +41,26 @@ class ChangePasswordDto extends AbstractDto
     public function getNewPasswordConfirm(): string
     {
         return $this->newPasswordConfirm;
+    }
+
+    public function setOldPassword(string $oldPassword): static
+    {
+        $this->oldPassword = $oldPassword;
+
+        return $this;
+    }
+
+    public function setNewPassword(string $newPassword): static
+    {
+        $this->newPassword = $newPassword;
+
+        return $this;
+    }
+
+    public function setNewPasswordConfirm(string $newPasswordConfirm): static
+    {
+        $this->newPasswordConfirm = $newPasswordConfirm;
+
+        return $this;
     }
 }

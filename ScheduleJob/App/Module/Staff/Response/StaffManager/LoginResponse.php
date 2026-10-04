@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace InterfaceApi\ScheduleJob\App\Module\Staff\Response\StaffManager;
 
 use InterfaceApi\ScheduleJob\App\Module\Staff\Dto\StaffAuth\AuthSessionDto;
+use InvalidArgumentException;
 use InterfaceApi\Support\ApiProperty;
 use InterfaceApi\Support\BaseResponse;
-use InvalidArgumentException;
 
 /**
  * 登录响应。loginMode / tempPasswordExpiresAt 给前端按 user_id 缓存登录方式。

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace InterfaceApi\ScheduleJob\App\Module\Staff\Response\StaffManager;
 
 use InterfaceApi\ScheduleJob\App\Module\Staff\Dto\StaffUser\GeneratedResetPasswordDto;
+use InvalidArgumentException;
 use InterfaceApi\Support\ApiProperty;
 use InterfaceApi\Support\BaseResponse;
-use InvalidArgumentException;
 
 /** 生成密码接口响应，password 回填到前端只读输入框。 */
 class GenerateResetPasswordResponse extends BaseResponse

@@ -6,8 +6,8 @@ namespace InterfaceApi\ScheduleJob\App\Module\Cron\Response\CronRobot;
 
 use InterfaceApi\ScheduleJob\App\Module\Common\Http\BaseListResponse;
 use InterfaceApi\ScheduleJob\App\Module\Cron\Dto\CronRobot\CronRobotListDataDto;
-use InterfaceApi\Support\ApiProperty;
 use InvalidArgumentException;
+use InterfaceApi\Support\ApiProperty;
 
 class CronRobotListResponse extends BaseListResponse
 {

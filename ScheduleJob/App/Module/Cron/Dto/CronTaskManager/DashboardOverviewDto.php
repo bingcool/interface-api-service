@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace InterfaceApi\ScheduleJob\App\Module\Cron\Dto\CronTaskManager;
 
-use InterfaceApi\Support\AbstractDto;
 use InterfaceApi\Support\ApiProperty;
+use InterfaceApi\Support\AbstractDto;
 
 /**
  * Dashboard 聚合概览。
@@ -46,5 +46,41 @@ class DashboardOverviewDto extends AbstractDto
         $dto->nodes = $nodes;
 
         return $dto;
+    }
+
+    public function getTasks(): array
+    {
+        return $this->tasks;
+    }
+
+    public function setTasks(array $tasks): static
+    {
+        $this->tasks = $tasks;
+
+        return $this;
+    }
+
+    public function getExecutions(): array
+    {
+        return $this->executions;
+    }
+
+    public function setExecutions(array $executions): static
+    {
+        $this->executions = $executions;
+
+        return $this;
+    }
+
+    public function getNodes(): array
+    {
+        return $this->nodes;
+    }
+
+    public function setNodes(array $nodes): static
+    {
+        $this->nodes = $nodes;
+
+        return $this;
     }
 }

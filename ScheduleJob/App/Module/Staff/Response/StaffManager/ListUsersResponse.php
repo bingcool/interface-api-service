@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace InterfaceApi\ScheduleJob\App\Module\Staff\Response\StaffManager;
 
-use InterfaceApi\ScheduleJob\App\Module\Common\Http\BasePageResultResponse;
-use InterfaceApi\Support\ApiProperty;
 use InvalidArgumentException;
+use InterfaceApi\Support\ApiProperty;
+use InterfaceApi\ScheduleJob\App\Module\Common\Http\BasePageResultResponse;
 
 class ListUsersResponse extends BasePageResultResponse
 {

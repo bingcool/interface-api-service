@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace InterfaceApi\ScheduleJob\App\Module\Cron\Dto\CronTaskManager;
 
-use InterfaceApi\Support\AbstractDto;
 use InterfaceApi\Support\ApiProperty;
+use InterfaceApi\Support\AbstractDto;
 
 /**
  * 创建/更新定时任务的原始字段入参 DTO。
@@ -51,5 +51,17 @@ class TaskPayloadInputDto extends AbstractDto
     public function toPayloadArray(): array
     {
         return $this->payload;
+    }
+
+    public function getPayload(): array
+    {
+        return $this->payload;
+    }
+
+    public function setPayload(array $payload): static
+    {
+        $this->payload = $payload;
+
+        return $this;
     }
 }

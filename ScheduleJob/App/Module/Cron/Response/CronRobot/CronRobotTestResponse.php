@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace InterfaceApi\ScheduleJob\App\Module\Cron\Response\CronRobot;
 
 use InterfaceApi\ScheduleJob\App\Module\Cron\Dto\CronRobot\CronRobotTestResultDto;
+use InvalidArgumentException;
 use InterfaceApi\Support\ApiProperty;
 use InterfaceApi\Support\BaseResponse;
-use InvalidArgumentException;
 
 class CronRobotTestResponse extends BaseResponse
 {

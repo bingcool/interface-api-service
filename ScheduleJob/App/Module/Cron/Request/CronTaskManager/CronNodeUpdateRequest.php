@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace InterfaceApi\ScheduleJob\App\Module\Cron\Request\CronTaskManager;
 
 use InterfaceApi\Support\ApiProperty;
-use InterfaceApi\Support\BaseRequest;
 use InterfaceApi\Support\StringToInt;
 use InterfaceApi\Support\ValidationRule;
+use InterfaceApi\Support\BaseRequest;
 
 /**
  * 更新节点（部分字段）。id 走 query/body，对应架构 PUT /nodes/{id}。

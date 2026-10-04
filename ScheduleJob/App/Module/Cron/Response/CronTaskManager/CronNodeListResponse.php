@@ -6,8 +6,8 @@ namespace InterfaceApi\ScheduleJob\App\Module\Cron\Response\CronTaskManager;
 
 use InterfaceApi\ScheduleJob\App\Module\Common\Http\BaseListResponse;
 use InterfaceApi\ScheduleJob\App\Module\Cron\Dto\CronTaskManager\CronNodeListDataDto;
-use InterfaceApi\Support\ApiProperty;
 use InvalidArgumentException;
+use InterfaceApi\Support\ApiProperty;
 
 class CronNodeListResponse extends BaseListResponse
 {

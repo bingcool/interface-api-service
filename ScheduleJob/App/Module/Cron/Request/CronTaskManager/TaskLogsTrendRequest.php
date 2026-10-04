@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace InterfaceApi\ScheduleJob\App\Module\Cron\Request\CronTaskManager;
 
 use InterfaceApi\Support\ApiProperty;
-use InterfaceApi\Support\BaseRequest;
 use InterfaceApi\Support\StringToInt;
 use InterfaceApi\Support\ValidationRule;
+use InterfaceApi\Support\BaseRequest;
 
 /**
  * 执行记录折线查询。与列表共用过滤字段，但不要求 page / pageSize。

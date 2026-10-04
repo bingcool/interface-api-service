@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace InterfaceApi\ScheduleJob\App\Module\Staff\Dto\StaffRole;
 
-use InterfaceApi\Support\AbstractDto;
 use InterfaceApi\Support\ApiProperty;
+use InterfaceApi\Support\AbstractDto;
 
 class GrantRolePagesDto extends AbstractDto
 {
@@ -41,5 +41,19 @@ class GrantRolePagesDto extends AbstractDto
     public function getPageIds(): array
     {
         return $this->pageIds;
+    }
+
+    public function setId(int $id): static
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    public function setPageIds(array $pageIds): static
+    {
+        $this->pageIds = $pageIds;
+
+        return $this;
     }
 }

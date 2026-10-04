@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace InterfaceApi\ScheduleJob\App\Module\Staff\Response\StaffManager;
 
 use InterfaceApi\ScheduleJob\App\Module\Common\Dto\StatusSwitchAckDto;
+use InvalidArgumentException;
 use InterfaceApi\Support\ApiProperty;
 use InterfaceApi\Support\BaseResponse;
-use InvalidArgumentException;
 
 class StaffMenuStatusAckResponse extends BaseResponse
 {

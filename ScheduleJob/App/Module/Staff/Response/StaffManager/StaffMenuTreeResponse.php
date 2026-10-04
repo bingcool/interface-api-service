@@ -6,8 +6,8 @@ namespace InterfaceApi\ScheduleJob\App\Module\Staff\Response\StaffManager;
 
 use InterfaceApi\ScheduleJob\App\Module\Common\Http\BaseListResponse;
 use InterfaceApi\ScheduleJob\App\Module\Staff\Dto\StaffRole\StaffMenuTreeListDataDto;
-use InterfaceApi\Support\ApiProperty;
 use InvalidArgumentException;
+use InterfaceApi\Support\ApiProperty;
 
 class StaffMenuTreeResponse extends BaseListResponse
 {

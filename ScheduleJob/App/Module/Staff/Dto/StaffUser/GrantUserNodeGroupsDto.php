@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace InterfaceApi\ScheduleJob\App\Module\Staff\Dto\StaffUser;
 
-use InterfaceApi\Support\AbstractDto;
 use InterfaceApi\Support\ApiProperty;
+use InterfaceApi\Support\AbstractDto;
 
 class GrantUserNodeGroupsDto extends AbstractDto
 {
@@ -41,5 +41,19 @@ class GrantUserNodeGroupsDto extends AbstractDto
     public function getNodeGroupIds(): array
     {
         return $this->nodeGroupIds;
+    }
+
+    public function setId(int $id): static
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    public function setNodeGroupIds(array $nodeGroupIds): static
+    {
+        $this->nodeGroupIds = $nodeGroupIds;
+
+        return $this;
     }
 }

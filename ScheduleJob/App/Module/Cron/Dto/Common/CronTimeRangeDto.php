@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace InterfaceApi\ScheduleJob\App\Module\Cron\Dto\Common;
 
-use InterfaceApi\Support\AbstractDto;
 use InterfaceApi\Support\ApiProperty;
 use InterfaceApi\Support\ValidationRule;
+use InterfaceApi\Support\AbstractDto;
 
 /**
  * Cron 允许/跳过执行时间段单项 DTO。

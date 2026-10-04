@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace InterfaceApi\ScheduleJob\App\Module\Cron\Response\CronTaskManager;
 
-use InterfaceApi\ScheduleJob\App\Module\Common\Http\BasePageResultResponse;
-use InterfaceApi\Support\ApiProperty;
 use InvalidArgumentException;
+use InterfaceApi\Support\ApiProperty;
+use InterfaceApi\ScheduleJob\App\Module\Common\Http\BasePageResultResponse;
 
 class TaskOperationLogsResponse extends BasePageResultResponse
 {

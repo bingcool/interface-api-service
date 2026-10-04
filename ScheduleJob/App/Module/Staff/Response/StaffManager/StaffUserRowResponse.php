@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace InterfaceApi\ScheduleJob\App\Module\Staff\Response\StaffManager;
 
 use InterfaceApi\ScheduleJob\App\Module\Staff\Dto\StaffUser\StaffUserRowDto;
+use InvalidArgumentException;
 use InterfaceApi\Support\ApiProperty;
 use InterfaceApi\Support\BaseResponse;
-use InvalidArgumentException;
 
 class StaffUserRowResponse extends BaseResponse
 {

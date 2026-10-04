@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace InterfaceApi\ScheduleJob\App\Module\Cron\Dto\CronTaskManager;
 
-use InterfaceApi\Support\AbstractDto;
 use InterfaceApi\Support\ApiProperty;
+use InterfaceApi\Support\AbstractDto;
 
 /**
  * 单次 Execution 查询：cron_id + exec_batch_id。
@@ -44,5 +44,26 @@ class ExecutionDetailQueryDto extends AbstractDto
     public function getExecBatchId(): string
     {
         return $this->execBatchId;
+    }
+
+    public function setLogId(?int $logId): static
+    {
+        $this->logId = $logId;
+
+        return $this;
+    }
+
+    public function setTaskId(int $taskId): static
+    {
+        $this->taskId = $taskId;
+
+        return $this;
+    }
+
+    public function setExecBatchId(string $execBatchId): static
+    {
+        $this->execBatchId = $execBatchId;
+
+        return $this;
     }
 }

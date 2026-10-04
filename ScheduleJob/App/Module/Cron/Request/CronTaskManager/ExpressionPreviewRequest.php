@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace InterfaceApi\ScheduleJob\App\Module\Cron\Request\CronTaskManager;
 
 use InterfaceApi\Support\ApiProperty;
-use InterfaceApi\Support\BaseRequest;
 use InterfaceApi\Support\ValidationRule;
+use InterfaceApi\Support\BaseRequest;
 
 /**
  * 表达式预览请求。

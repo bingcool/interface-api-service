@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace InterfaceApi\ScheduleJob\App\Module\Staff\Request\StaffManager;
 
 use InterfaceApi\Support\ApiProperty;
-use InterfaceApi\Support\BaseRequest;
 use InterfaceApi\Support\StringToInt;
 use InterfaceApi\Support\ValidationRule;
+use InterfaceApi\Support\BaseRequest;
 
 class StaffMenuStatusRequest extends BaseRequest
 {

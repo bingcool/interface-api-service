@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace InterfaceApi\ScheduleJob\App\Module\Cron\Dto\Common;
 
-use InterfaceApi\Support\AbstractDto;
 use InterfaceApi\Support\ApiProperty;
+use InterfaceApi\Support\AbstractDto;
 
 /**
  * buildTaskPayload 构建结果 DTO。
@@ -75,5 +75,19 @@ class CronTaskPayloadBuildResultDto extends AbstractDto
     public function getPayload(): ?CronTaskPayloadDto
     {
         return $this->payload;
+    }
+
+    public function setPayload(?CronTaskPayloadDto $payload): static
+    {
+        $this->payload = $payload;
+
+        return $this;
+    }
+
+    public function setError(?string $error): static
+    {
+        $this->error = $error;
+
+        return $this;
     }
 }

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace InterfaceApi\ScheduleJob\App\Module\Cron\Request\CronTaskManager;
 
 use InterfaceApi\Support\ApiProperty;
-use InterfaceApi\Support\BaseRequest;
 use InterfaceApi\Support\StringToInt;
 use InterfaceApi\Support\ValidationRule;
+use InterfaceApi\Support\BaseRequest;
 
 /**
  * 单次执行详情查询。路由无 {id} 占位，用 query：id + execBatchId。

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace InterfaceApi\ScheduleJob\App\Module\Cron\Dto\CronRobot;
 
-use InterfaceApi\Support\AbstractDto;
 use InterfaceApi\Support\ApiProperty;
+use InterfaceApi\Support\AbstractDto;
 
 class CronRobotTestResultDto extends AbstractDto
 {
@@ -32,5 +32,19 @@ class CronRobotTestResultDto extends AbstractDto
     public function getError(): string
     {
         return $this->error;
+    }
+
+    public function setOk(bool $ok): static
+    {
+        $this->ok = $ok;
+
+        return $this;
+    }
+
+    public function setError(string $error): static
+    {
+        $this->error = $error;
+
+        return $this;
     }
 }

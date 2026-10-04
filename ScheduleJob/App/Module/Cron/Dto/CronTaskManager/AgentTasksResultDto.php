@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace InterfaceApi\ScheduleJob\App\Module\Cron\Dto\CronTaskManager;
 
-use InterfaceApi\Support\AbstractDto;
 use InterfaceApi\Support\ApiProperty;
+use InterfaceApi\Support\AbstractDto;
 
 /**
  * Agent 拉取待执行任务结果 DTO。
@@ -165,5 +165,54 @@ class AgentTasksResultDto extends AbstractDto
     public function getTotal(): int
     {
         return $this->total;
+    }
+
+    public function setNodeId(int $nodeId): static
+    {
+        $this->nodeId = $nodeId;
+
+        return $this;
+    }
+
+    public function setExecType(?int $execType): static
+    {
+        $this->execType = $execType;
+
+        return $this;
+    }
+
+    public function setList(?array $list): static
+    {
+        $this->list = $list;
+
+        return $this;
+    }
+
+    public function setShellTasks(?array $shellTasks): static
+    {
+        $this->shellTasks = $shellTasks;
+
+        return $this;
+    }
+
+    public function setHttpTasks(?array $httpTasks): static
+    {
+        $this->httpTasks = $httpTasks;
+
+        return $this;
+    }
+
+    public function setK8sTasks(?array $k8sTasks): static
+    {
+        $this->k8sTasks = $k8sTasks;
+
+        return $this;
+    }
+
+    public function setTotal(int $total): static
+    {
+        $this->total = $total;
+
+        return $this;
     }
 }

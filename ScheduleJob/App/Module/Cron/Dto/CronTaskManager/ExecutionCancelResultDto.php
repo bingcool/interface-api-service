@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace InterfaceApi\ScheduleJob\App\Module\Cron\Dto\CronTaskManager;
 
-use InterfaceApi\Support\AbstractDto;
 use InterfaceApi\Support\ApiProperty;
+use InterfaceApi\Support\AbstractDto;
 
 class ExecutionCancelResultDto extends AbstractDto
 {
@@ -51,5 +51,26 @@ class ExecutionCancelResultDto extends AbstractDto
     public function isAlreadyFinished(): bool
     {
         return $this->alreadyFinished;
+    }
+
+    public function setExecutionId(int $executionId): static
+    {
+        $this->executionId = $executionId;
+
+        return $this;
+    }
+
+    public function setStatus(string $status): static
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function setAlreadyFinished(bool $alreadyFinished): static
+    {
+        $this->alreadyFinished = $alreadyFinished;
+
+        return $this;
     }
 }

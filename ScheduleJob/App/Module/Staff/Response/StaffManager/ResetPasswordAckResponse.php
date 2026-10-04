@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace InterfaceApi\ScheduleJob\App\Module\Staff\Response\StaffManager;
 
 use InterfaceApi\ScheduleJob\App\Module\Staff\Dto\StaffUser\ResetPasswordAckDto;
+use InvalidArgumentException;
 use InterfaceApi\Support\ApiProperty;
 use InterfaceApi\Support\BaseResponse;
-use InvalidArgumentException;
 
 /** 确认重置响应。mailSent=false 时前端提示邮件失败或未绑定邮箱。 */
 class ResetPasswordAckResponse extends BaseResponse

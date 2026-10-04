@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace InterfaceApi\ScheduleJob\App\Module\Staff\Response\StaffManager;
 
 use InterfaceApi\ScheduleJob\App\Module\Staff\Dto\StaffUser\StaffUserRowDto;
-use InterfaceApi\Support\ArrayDto;
-use InterfaceApi\Support\ArrayList;
 use InvalidArgumentException;
+use InterfaceApi\Support\ArrayList;
+use InterfaceApi\Support\ArrayDto;
 
 class ListUsersPageResult extends ArrayDto
 {

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace InterfaceApi\ScheduleJob\App\Module\Staff\Request\StaffManager;
 
 use InterfaceApi\Support\ApiProperty;
-use InterfaceApi\Support\BasePageRequest;
 use InterfaceApi\Support\StringToInt;
 use InterfaceApi\Support\ValidationRule;
+use InterfaceApi\Support\BasePageRequest;
 
 class ListUsersRequest extends BasePageRequest
 {

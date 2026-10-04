@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace InterfaceApi\ScheduleJob\App\Module\Cron\Dto\CronTaskManager;
 
-use InterfaceApi\Support\AbstractDto;
 use InterfaceApi\Support\ApiProperty;
+use InterfaceApi\Support\AbstractDto;
 
 /**
  * 批量启停入参。
@@ -44,5 +44,19 @@ class BatchStatusDto extends AbstractDto
     public function getStatus(): int
     {
         return $this->status;
+    }
+
+    public function setIds(array $ids): static
+    {
+        $this->ids = $ids;
+
+        return $this;
+    }
+
+    public function setStatus(int $status): static
+    {
+        $this->status = $status;
+
+        return $this;
     }
 }

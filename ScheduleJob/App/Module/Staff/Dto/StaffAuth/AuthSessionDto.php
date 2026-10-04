@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace InterfaceApi\ScheduleJob\App\Module\Staff\Dto\StaffAuth;
 
-use InterfaceApi\Support\AbstractDto;
 use InterfaceApi\Support\ApiProperty;
+use InterfaceApi\Support\AbstractDto;
 
 /**
  * 登录成功会话。
@@ -76,5 +76,47 @@ class AuthSessionDto extends AbstractDto
     public function getTempPasswordExpiresAt(): string
     {
         return $this->tempPasswordExpiresAt;
+    }
+
+    public function setToken(string $token): static
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    public function setTokenType(string $tokenType): static
+    {
+        $this->tokenType = $tokenType;
+
+        return $this;
+    }
+
+    public function setExpiresIn(int $expiresIn): static
+    {
+        $this->expiresIn = $expiresIn;
+
+        return $this;
+    }
+
+    public function setUser(AuthMeProfileDto $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function setLoginMode(string $loginMode): static
+    {
+        $this->loginMode = $loginMode;
+
+        return $this;
+    }
+
+    public function setTempPasswordExpiresAt(string $tempPasswordExpiresAt): static
+    {
+        $this->tempPasswordExpiresAt = $tempPasswordExpiresAt;
+
+        return $this;
     }
 }
